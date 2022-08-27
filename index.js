@@ -10,11 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/api", (req, res) => {
-  console.log("accpeted!");
-  return res.send("hi");
-});
-
 app.use("/auth", authRouter);
 
 /* Error handler middleware */
@@ -36,5 +31,4 @@ mongoose
   .catch((err) => {
     console.log(`Some Database Connection Error Occured :- ${err}`);
   });
-// mongoose.connect("mongodb://localhost:27017/myapp");
 app.listen(3001, () => {});

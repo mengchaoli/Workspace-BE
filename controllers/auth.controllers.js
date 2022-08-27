@@ -12,9 +12,9 @@ const signup = (req, res, next) => {
       const user = new User({ username: email, password: hashedPassword });
       return user.save();
     })
-    .then(() => {
-      console.log("user created!");
-      return res.send("hi");
+    .then((createdUser) => {
+      console.log("user created:", createdUser);
+      return res.status(201).send({ message: "User created", createdUser });
     })
     .catch((err) => {
       console.log(err);
