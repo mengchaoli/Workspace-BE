@@ -1,8 +1,10 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const authRouter = require("./routes/auth.routes");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const authRouter = require('./routes/auth.routes');
+// test
+const testRouter = require('./routes/test.routes');
 
 const app = express();
 
@@ -10,7 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/auth", authRouter);
+app.use('/auth', authRouter);
+app.use('/test', testRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
@@ -22,7 +25,7 @@ app.use((err, req, res, next) => {
 });
 
 mongoose
-  .connect("mongodb://localhost/myworkspace")
+  .connect('mongodb://localhost/myworkspace')
   .then((data) => {
     console.log(
       `MongoDb Database Connected to the Server : ${data.connection.host}`
